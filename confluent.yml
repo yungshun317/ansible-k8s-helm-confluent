@@ -35,6 +35,7 @@
         group: ccma
         mode: 0644
       with_items:
+        - cp-helm-charts/
         - zookeeper-pv.yml
         - kafka-pv.yml
 
@@ -47,3 +48,13 @@
       shell: "kubectl create -f kafka-pv.yml"
       environment: 
         KUBECONFIG: /home/ccma/.kube/config
+
+    - name: Install confluent platform by Helm
+      shell: "helm install --name confluent ./cp-helm-charts"
+      environment:
+        KUBECONFIG: /home/ccma/.kube/config
+      register: install_confluent
+
+    - name: Debug install_confluent
+      debug:
+        var: install_confluent

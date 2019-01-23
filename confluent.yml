@@ -1,0 +1,49 @@
+---
+- name: confluent-directories
+  hosts: ccma
+  gather_facts: no
+
+  vars: 
+    ansible_become_pass: "ccma"
+
+  tasks:
+    - name: Create directory for zookeeper-pv
+      file:
+        path: /home/ccma/data/zookeeper-data
+        state: directory
+        mode: 0755
+   
+    - name: Create directory for kafka-pv
+      file:
+        path: /home/ccma/data/kafka-data
+        state: directory
+        mode: 0755 
+
+- name: confluent
+  hosts: master1
+  gather_facts: no
+
+  vars: 
+    ansible_become_pass: "ccma"
+
+  tasks:
+    - name: Copy multiple .yml files to remote
+      copy: 
+        src: "{{ item }}"
+        dest: "/home/ccma/{{ item }}"
+        owner: ccma
+        group: ccma
+        mode: 0644
+      with_items:
+        - zookeeper-pv.yml
+        - kafka-pv.yml
+
+    - name: Initialize persistent volumes for zookeeper
+      shell: "kubectl create -f zookeeper-pv.yml"
+      environment: 
+        KUBECONFIG: /home/ccma/.kube/config
+
+    - name: Initialize persistent volumes for kafka
+      shell: "kubectl create -f kafka-pv.yml"
+      environment: 
+        KUBECONFIG: /home/ccma/.kube/config

@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata: 
+  name: zookeeper-datadir-pv
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: local-storage
+  hostPath:
+    path: /home/ccma/data/zookeeper-datadir-data
+  persistentVolumeReclaimPolicy: Retain

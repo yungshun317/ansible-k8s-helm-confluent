@@ -9,7 +9,13 @@
   tasks:
     - name: Create directory for zookeeper-pv
       file:
-        path: /home/ccma/data/zookeeper-data
+        path: /home/ccma/data/zookeeper-datadir-data
+        state: directory
+        mode: 0755
+
+    - name: Create directory for zookeeper-pv
+      file:
+        path: /home/ccma/data/zookeeper-datalogdir-data
         state: directory
         mode: 0755
    
@@ -36,11 +42,17 @@
         mode: 0644
       with_items:
         - cp-helm-charts/
-        - zookeeper-pv.yml
+        - zookeeper-datadir-pv.yml
+        - zookeeper-datalogdir-pv.yml
         - kafka-pv.yml
 
-    - name: Initialize persistent volumes for zookeeper
-      shell: "kubectl create -f zookeeper-pv.yml"
+    - name: Initialize persistent volumes for zookeeper datadir
+      shell: "kubectl create -f zookeeper-datadir-pv.yml"
+      environment: 
+        KUBECONFIG: /home/ccma/.kube/config
+
+    - name: Initialize persistent volumes for zookeeper datalogdir
+      shell: "kubectl create -f zookeeper-datalogdir-pv.yml"
       environment: 
         KUBECONFIG: /home/ccma/.kube/config
 

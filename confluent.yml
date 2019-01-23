@@ -7,21 +7,57 @@
     ansible_become_pass: "ccma"
 
   tasks:
-    - name: Create directory for zookeeper-pv
+    - name: Create directory for zookeeper-datadir-pv-0
       file:
-        path: /home/ccma/data/zookeeper-datadir-data
+        path: /home/ccma/data/zookeeper-datadir-data-0
         state: directory
         mode: 0755
 
-    - name: Create directory for zookeeper-pv
+    - name: Create directory for zookeeper-datadir-pv-1
       file:
-        path: /home/ccma/data/zookeeper-datalogdir-data
+        path: /home/ccma/data/zookeeper-datadir-data-1
+        state: directory
+        mode: 0755
+
+    - name: Create directory for zookeeper-datadir-pv-2
+      file:
+        path: /home/ccma/data/zookeeper-datadir-data-2
+        state: directory
+        mode: 0755
+
+    - name: Create directory for zookeeper-datadir-pv-0
+      file:
+        path: /home/ccma/data/zookeeper-datalogdir-data-0
+        state: directory
+        mode: 0755
+
+    - name: Create directory for zookeeper-datadir-pv-1
+      file:
+        path: /home/ccma/data/zookeeper-datalogdir-data-1
+        state: directory
+        mode: 0755
+
+    - name: Create directory for zookeeper-datadir-pv-2
+      file:
+        path: /home/ccma/data/zookeeper-datalogdir-data-2
         state: directory
         mode: 0755
    
-    - name: Create directory for kafka-pv
+    - name: Create directory for kafka-pv-0
       file:
-        path: /home/ccma/data/kafka-data
+        path: /home/ccma/data/kafka-data-0
+        state: directory
+        mode: 0755 
+
+    - name: Create directory for kafka-pv-1
+      file:
+        path: /home/ccma/data/kafka-data-1
+        state: directory
+        mode: 0755 
+
+    - name: Create directory for kafka-pv-2
+      file:
+        path: /home/ccma/data/kafka-data-2
         state: directory
         mode: 0755 
 

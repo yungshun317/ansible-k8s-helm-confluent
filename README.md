@@ -1,4 +1,34 @@
 # Ansible Kubernetes Helm Confluent
+## Zookeeper Client
+$ kubectl exec -it zookeeper-client -- /bin/bash
+root@zookeeper-client:/# zookeeper-shell confluent-cp-zookeeper:2181
+Connecting to confluent-cp-zookeeper:2181
+Welcome to ZooKeeper!
+JLine support is enabled
+[zk: confluent-cp-zookeeper:2181(CONNECTING) 0] 
+WATCHER::
+
+WatchedEvent state:SyncConnected type:None path:null
+ls /brokers/ids
+[0, 1, 2]
+ 
+[zk: confluent-cp-zookeeper:2181(CONNECTED) 1] ls /brokers/topics
+[confluent-cp-kafka-canary-topic, _schemas, confluent-cp-kafka-connect-config, confluent-cp-kafka-connect-status, confluent-cp-kafka-connect-offset, __confluent.support.metrics, __consumer_offsets, _confluent-ksql-confluent_command_topic]
+
+[zk: confluent-cp-zookeeper:2181(CONNECTED) 2] get /brokers/ids/0
+{"listener_security_protocol_map":{"PLAINTEXT":"PLAINTEXT","EXTERNAL":"PLAINTEXT"},"endpoints":["PLAINTEXT://confluent-cp-kafka-0.confluent-cp-kafka-headless.default:9092","EXTERNAL://10.236.1.2:31090"],"jmx_port":5555,"host":"confluent-cp-kafka-0.confluent-cp-kafka-headless.default","timestamp":"1553592646850","port":9092,"version":4}
+cZxid = 0x100000054
+ctime = Tue Mar 26 09:30:46 UTC 2019
+mZxid = 0x100000054
+mtime = Tue Mar 26 09:30:46 UTC 2019
+pZxid = 0x100000054
+cversion = 0
+dataVersion = 0
+aclVersion = 0
+ephemeralOwner = 0x2017d997fb90003
+dataLength = 337
+numChildren = 0
+
 ## Kafka Client
 ### kafka-console-producer
 $ kubectl exec -it kafka-client -- /bin/bash

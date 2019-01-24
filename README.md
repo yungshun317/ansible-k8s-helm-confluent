@@ -1,5 +1,37 @@
 # Ansible Kubernetes Helm Confluent
 ## Kafka Client
+### kafka-console-producer
+$ kubectl exec -it kafka-client -- /bin/bash
+root@kafka-client:/# kafka-topics --zookeeper confluent-cp-zookeeper-headless:2181 --topic confluent-topic --create --partitions 1 --replication-factor 1 --if-not-exists
+Created topic "confluent-topic".
+root@kafka-client:/# kafka-console-producer --broker-list confluent-cp-kafka-headless:9092 --topic confluent-topic
+>Wed Mar 27 01:56:47 UTC 2019
+
+### kafka-console-consumer
+$ kubectl exec -it kafka-client -- /bin/bash
+root@kafka-client:/# kafka-console-consumer --bootstrap-server confluent-cp-kafka-headless:9092 --topic confluent-topic --from-beginning
+Wed Mar 27 01:56:47 UTC 2019
+root@kafka-client:/# kafka-topics --list --zookeeper confluent-cp-zookeeper-headless:2181
+__confluent.support.metrics
+__consumer_offsets
+_confluent-ksql-confluent_command_topic
+_schemas
+confluent-cp-kafka-canary-topic
+confluent-cp-kafka-connect-config
+confluent-cp-kafka-connect-offset
+confluent-cp-kafka-connect-status
+confluent-topic
+root@kafka-client:/# kafka-topics --zookeeper confluent-cp-zookeeper-headless:2181 --delete --topic confluent-topicTopic confluent-topic is marked for deletion.
+Note: This will have no impact if delete.topic.enable is not set to true.
+root@kafka-client:/# kafka-topics --list --zookeeper confluent-cp-zookeeper-headless:2181
+__confluent.support.metrics
+__consumer_offsets
+_confluent-ksql-confluent_command_topic
+_schemas
+confluent-cp-kafka-canary-topic
+confluent-cp-kafka-connect-config
+confluent-cp-kafka-connect-offset
+confluent-cp-kafka-connect-status
 
 ## Kafka Connect
 $ kubectl get svc confluent-cp-kafka-connect
@@ -18,4 +50,13 @@ $ curl 10.99.152.226:8083/connectors
 $ curl -X POST -H "Content-Type: application/json" --data '{"name": "local-file-sink", "config": {"connector.class":"FileStreamSinkConnector", "tasks.max":"1", "file":"test.sink.txt", "topics":"connect-test" }}' http://10.99.152.226:8083/connectors
 {"name":"local-file-sink","config":{"connector.class":"FileStreamSinkConnector","tasks.max":"1","file":"test.sink.txt","topics":"connect-test","name":"local-file-sink"},"tasks":[],"type":"sink"}
 
+$ curl 10.99.152.226:8083/connectors
+["local-file-sink"]
 
+$ curl 10.99.152.226:8083/connectors/local-file-sink/tasks 
+[{"id":{"connector":"local-file-sink","task":0},"config":{"file":"test.sink.txt","task.class":"org.apache.kafka.connect.file.FileStreamSinkTask","topics":"connect-test"}}]
+
+$ curl 10.99.152.226:8083/connectors/local-file-sink/status
+{"name":"local-file-sink","connector":{"state":"RUNNING","worker_id":"10.244.1.33:8083"},"tasks":[{"id":0,"state":"RUNNING","worker_id":"10.244.1.33:8083"}],"type":"sink"}
+
+$ curl -X DELETE 10.99.152.226:8083/connectors/local-file-sink

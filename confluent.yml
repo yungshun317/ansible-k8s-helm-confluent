@@ -81,6 +81,7 @@
         - zookeeper-datadir-pv.yml
         - zookeeper-datalogdir-pv.yml
         - kafka-pv.yml
+        - kafka-client.yml
 
     - name: Initialize persistent volumes for zookeeper datadir
       shell: "kubectl create -f zookeeper-datadir-pv.yml"
@@ -106,3 +107,8 @@
     - name: Debug install_confluent
       debug:
         var: install_confluent
+
+    - name: Deploy a Kafka client pod
+      shell: "kubectl create -f kafka-client.yml"
+      environment: 
+        KUBECONFIG: /home/ccma/.kube/config

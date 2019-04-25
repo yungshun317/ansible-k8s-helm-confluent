@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-client-producer
+  labels:
+    app: kafka-client-producer
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kafka-client-producer
+  template:
+    metadata:
+      labels:
+        app: kafka-client-producer
+    spec:
+      containers:
+      - name: kafka-client-producer
+        image: confluentinc/cp-kafka:5.1.2
+        command:
+          - sh
+          - -c
+          - "while true; do echo \"test 1\"; done | kafka-console-producer --broker-list confluent-cp-kafka-headless:9092 --topic confluent-topic"

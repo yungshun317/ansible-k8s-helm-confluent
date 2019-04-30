@@ -51,7 +51,8 @@ confluent-cp-kafka-connect-config
 confluent-cp-kafka-connect-offset
 confluent-cp-kafka-connect-status
 confluent-topic
-root@kafka-client:/# kafka-topics --zookeeper confluent-cp-zookeeper-headless:2181 --delete --topic confluent-topicTopic confluent-topic is marked for deletion.
+root@kafka-client:/# kafka-topics --zookeeper confluent-cp-zookeeper-headless:2181 --delete --topic confluent-topic
+Topic confluent-topic is marked for deletion.
 Note: This will have no impact if delete.topic.enable is not set to true.
 root@kafka-client:/# kafka-topics --list --zookeeper confluent-cp-zookeeper-headless:2181
 __confluent.support.metrics

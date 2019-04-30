@@ -20,4 +20,5 @@ spec:
         command:
           - sh
           - -c
-          - "while true; do echo \"test 1\"; done | kafka-console-producer --broker-list confluent-cp-kafka-headless:9092 --topic confluent-topic"
+          - "true i=0; while true; do echo \"$(hostname --ip-address):$(date):$i\"; true $((i=i+1)); done | kafka-console-producer --broker-list confluent-cp-kafka-headless:9092 --topic confluent-topic"
+          #- "while true; do echo \"test 1\"; done | kafka-console-producer --broker-list confluent-cp-kafka-headless:9092 --topic confluent-topic"

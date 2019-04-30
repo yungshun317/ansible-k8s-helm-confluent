@@ -571,3 +571,214 @@
 2019-03-26 17:29:32,425 p=20038 u=yungshun |  master1                    : ok=15   changed=14   unreachable=0    failed=0   
 2019-03-26 17:29:32,426 p=20038 u=yungshun |  worker1                    : ok=9    changed=9    unreachable=0    failed=0   
 2019-03-26 17:29:32,426 p=20038 u=yungshun |  worker2                    : ok=9    changed=9    unreachable=0    failed=0   
+2019-04-26 11:17:33,111 p=5485 u=yungshun |  PLAY [confluent-directories] ***************************************************
+2019-04-26 11:17:33,178 p=5485 u=yungshun |  TASK [Create directory for zookeeper-datadir-pv-0] *****************************
+2019-04-26 11:17:35,314 p=5485 u=yungshun |  ok: [master1]
+2019-04-26 11:17:35,450 p=5485 u=yungshun |  ok: [worker1]
+2019-04-26 11:17:35,452 p=5485 u=yungshun |  ok: [worker2]
+2019-04-26 11:17:35,456 p=5485 u=yungshun |  TASK [Create directory for zookeeper-datadir-pv-1] *****************************
+2019-04-26 11:17:35,933 p=5485 u=yungshun |  ok: [master1]
+2019-04-26 11:17:35,978 p=5485 u=yungshun |  ok: [worker1]
+2019-04-26 11:17:35,979 p=5485 u=yungshun |  ok: [worker2]
+2019-04-26 11:17:35,988 p=5485 u=yungshun |  TASK [Create directory for zookeeper-datadir-pv-2] *****************************
+2019-04-26 11:17:36,489 p=5485 u=yungshun |  ok: [master1]
+2019-04-26 11:17:36,505 p=5485 u=yungshun |  ok: [worker1]
+2019-04-26 11:17:36,527 p=5485 u=yungshun |  ok: [worker2]
+2019-04-26 11:17:36,536 p=5485 u=yungshun |  TASK [Create directory for zookeeper-datadir-pv-0] *****************************
+2019-04-26 11:17:37,057 p=5485 u=yungshun |  ok: [master1]
+2019-04-26 11:17:37,078 p=5485 u=yungshun |  ok: [worker1]
+2019-04-26 11:17:37,091 p=5485 u=yungshun |  ok: [worker2]
+2019-04-26 11:17:37,101 p=5485 u=yungshun |  TASK [Create directory for zookeeper-datadir-pv-1] *****************************
+2019-04-26 11:17:37,601 p=5485 u=yungshun |  ok: [master1]
+2019-04-26 11:17:37,605 p=5485 u=yungshun |  ok: [worker1]
+2019-04-26 11:17:37,635 p=5485 u=yungshun |  ok: [worker2]
+2019-04-26 11:17:37,642 p=5485 u=yungshun |  TASK [Create directory for zookeeper-datadir-pv-2] *****************************
+2019-04-26 11:17:38,161 p=5485 u=yungshun |  ok: [master1]
+2019-04-26 11:17:38,178 p=5485 u=yungshun |  ok: [worker1]
+2019-04-26 11:17:38,195 p=5485 u=yungshun |  ok: [worker2]
+2019-04-26 11:17:38,206 p=5485 u=yungshun |  TASK [Create directory for kafka-pv-0] *****************************************
+2019-04-26 11:17:38,733 p=5485 u=yungshun |  ok: [master1]
+2019-04-26 11:17:38,746 p=5485 u=yungshun |  ok: [worker1]
+2019-04-26 11:17:38,759 p=5485 u=yungshun |  ok: [worker2]
+2019-04-26 11:17:38,773 p=5485 u=yungshun |  TASK [Create directory for kafka-pv-1] *****************************************
+2019-04-26 11:17:39,292 p=5485 u=yungshun |  ok: [master1]
+2019-04-26 11:17:39,381 p=5485 u=yungshun |  ok: [worker1]
+2019-04-26 11:17:39,398 p=5485 u=yungshun |  ok: [worker2]
+2019-04-26 11:17:39,409 p=5485 u=yungshun |  TASK [Create directory for kafka-pv-2] *****************************************
+2019-04-26 11:17:40,002 p=5485 u=yungshun |  ok: [master1]
+2019-04-26 11:17:40,005 p=5485 u=yungshun |  ok: [worker1]
+2019-04-26 11:17:40,035 p=5485 u=yungshun |  ok: [worker2]
+2019-04-26 11:17:40,046 p=5485 u=yungshun |  PLAY [confluent] ***************************************************************
+2019-04-26 11:17:40,066 p=5485 u=yungshun |  TASK [Copy multiple .yml files to remote] **************************************
+2019-04-26 11:18:41,075 p=5485 u=yungshun |  ok: [master1] => (item=cp-helm-charts/)
+2019-04-26 11:18:41,674 p=5485 u=yungshun |  ok: [master1] => (item=zookeeper-datadir-pv.yml)
+2019-04-26 11:18:42,286 p=5485 u=yungshun |  ok: [master1] => (item=zookeeper-datalogdir-pv.yml)
+2019-04-26 11:18:43,117 p=5485 u=yungshun |  changed: [master1] => (item=zookeeper-client.yml)
+2019-04-26 11:18:43,714 p=5485 u=yungshun |  ok: [master1] => (item=kafka-pv.yml)
+2019-04-26 11:18:44,357 p=5485 u=yungshun |  changed: [master1] => (item=kafka-client.yml)
+2019-04-26 11:18:44,370 p=5485 u=yungshun |  TASK [Initialize persistent volumes for zookeeper datadir] *********************
+2019-04-26 11:18:47,264 p=5485 u=yungshun |  changed: [master1]
+2019-04-26 11:18:47,270 p=5485 u=yungshun |  TASK [Initialize persistent volumes for zookeeper datalogdir] ******************
+2019-04-26 11:18:50,116 p=5485 u=yungshun |  changed: [master1]
+2019-04-26 11:18:50,126 p=5485 u=yungshun |  TASK [Initialize persistent volumes for kafka] *********************************
+2019-04-26 11:18:52,893 p=5485 u=yungshun |  changed: [master1]
+2019-04-26 11:18:52,898 p=5485 u=yungshun |  TASK [Install confluent platform by Helm] **************************************
+2019-04-26 11:18:55,451 p=5485 u=yungshun |  changed: [master1]
+2019-04-26 11:18:55,457 p=5485 u=yungshun |  TASK [Debug install_confluent] *************************************************
+2019-04-26 11:18:55,553 p=5485 u=yungshun |  ok: [master1] => {
+    "install_confluent": {
+        "changed": true, 
+        "cmd": "helm install --name confluent ./cp-helm-charts", 
+        "delta": "0:00:02.120918", 
+        "end": "2019-04-26 11:18:55.379168", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2019-04-26 11:18:53.258250", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "NAME:   confluent\nLAST DEPLOYED: Fri Apr 26 11:18:53 2019\nNAMESPACE: default\nSTATUS: DEPLOYED\n\nRESOURCES:\n==> v1/Service\nNAME                             TYPE       CLUSTER-IP      EXTERNAL-IP  PORT(S)            AGE\nconfluent-cp-kafka-connect       ClusterIP  10.109.82.109   <none>       8083/TCP           2s\nconfluent-cp-kafka-rest          ClusterIP  10.109.220.177  <none>       8082/TCP           2s\nconfluent-cp-kafka-headless      ClusterIP  None            <none>       9092/TCP           2s\nconfluent-cp-kafka               ClusterIP  10.102.47.134   <none>       9092/TCP           1s\nconfluent-cp-ksql-server         ClusterIP  10.108.23.9     <none>       8088/TCP           1s\nconfluent-cp-schema-registry     ClusterIP  10.108.118.149  <none>       8081/TCP           1s\nconfluent-cp-zookeeper-headless  ClusterIP  None            <none>       2888/TCP,3888/TCP  1s\nconfluent-cp-zookeeper           ClusterIP  10.108.33.4     <none>       2181/TCP           1s\n\n==> v1beta2/Deployment\nNAME                          DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE\nconfluent-cp-kafka-connect    1        1        1           0          1s\nconfluent-cp-kafka-rest       1        1        1           0          1s\nconfluent-cp-ksql-server      1        1        1           0          1s\nconfluent-cp-schema-registry  1        1        1           0          1s\n\n==> v1beta1/StatefulSet\nNAME                    DESIRED  CURRENT  AGE\nconfluent-cp-kafka      3        1        1s\nconfluent-cp-zookeeper  3        1        1s\n\n==> v1/Pod(related)\nNAME                                           READY  STATUS             RESTARTS  AGE\nconfluent-cp-kafka-connect-8bf74bcf7-7kz4x     0/2    ContainerCreating  0         1s\nconfluent-cp-kafka-rest-55d7897c88-2976n       0/2    ContainerCreating  0         1s\nconfluent-cp-ksql-server-66d8947898-jbqfh      0/2    ContainerCreating  0         1s\nconfluent-cp-schema-registry-747f745bbb-kckjr  0/2    ContainerCreating  0         1s\nconfluent-cp-kafka-0                           0/2    Pending            0         1s\nconfluent-cp-zookeeper-0                       0/2    Pending            0         0s\n\n==> v1beta1/PodDisruptionBudget\nNAME                        MIN AVAILABLE  MAX UNAVAILABLE  ALLOWED DISRUPTIONS  AGE\nconfluent-cp-zookeeper-pdb  N/A            1                0                    2s\n\n==> v1/ConfigMap\nNAME                                             DATA  AGE\nconfluent-cp-kafka-connect-jmx-configmap         1     2s\nconfluent-cp-kafka-rest-jmx-configmap            1     2s\nconfluent-cp-kafka-jmx-configmap                 1     2s\nconfluent-cp-ksql-server-jmx-configmap           1     2s\nconfluent-cp-ksql-server-ksql-queries-configmap  1     2s\nconfluent-cp-schema-registry-jmx-configmap       1     2s\nconfluent-cp-zookeeper-jmx-configmap             1     2s\n\n\nNOTES:\n## ------------------------------------------------------\n## Zookeeper\n## ------------------------------------------------------\nConnection string for Confluent Kafka:\n  confluent-cp-zookeeper-0.confluent-cp-zookeeper-headless:2181,confluent-cp-zookeeper-1.confluent-cp-zookeeper-headless:2181,...\n\nTo connect from a client pod:\n\n1. Deploy a zookeeper client pod with configuration:\n\n    apiVersion: v1\n    kind: Pod\n    metadata:\n      name: zookeeper-client\n      namespace: default\n    spec:\n      containers:\n      - name: zookeeper-client\n        image: confluentinc/cp-zookeeper:5.1.2\n        command:\n          - sh\n          - -c\n          - \"exec tail -f /dev/null\"\n\n2. Log into the Pod\n\n  kubectl exec -it zookeeper-client -- /bin/bash\n\n3. Use zookeeper-shell to connect in the zookeeper-client Pod:\n\n  zookeeper-shell confluent-cp-zookeeper:2181\n\n4. Explore with zookeeper commands, for example:\n\n  # Gives the list of active brokers\n  ls /brokers/ids\n\n  # Gives the list of topics\n  ls /brokers/topics\n\n  # Gives more detailed information of the broker id '0'\n  get /brokers/ids/0## ------------------------------------------------------\n## Kafka\n## ------------------------------------------------------\nTo connect from a client pod:\n\n1. Deploy a kafka client pod with configuration:\n\n    apiVersion: v1\n    kind: Pod\n    metadata:\n      name: kafka-client\n      namespace: default\n    spec:\n      containers:\n      - name: kafka-client\n        image: confluentinc/cp-kafka:5.1.2\n        command:\n          - sh\n          - -c\n          - \"exec tail -f /dev/null\"\n\n2. Log into the Pod\n\n  kubectl exec -it kafka-client -- /bin/bash\n\n3. Explore with kafka commands:\n\n  # Create the topic\n  kafka-topics --zookeeper confluent-cp-zookeeper-headless:2181 --topic confluent-topic --create --partitions 1 --replication-factor 1 --if-not-exists\n\n  # Create a message\n  MESSAGE=\"`date -u`\"\n\n  # Produce a test message to the topic\n  echo \"$MESSAGE\" | kafka-console-producer --broker-list confluent-cp-kafka-headless:9092 --topic confluent-topic\n\n  # Consume a test message from the topic\n  kafka-console-consumer --bootstrap-server confluent-cp-kafka-headless:9092 --topic confluent-topic --from-beginning --timeout-ms 2000 --max-messages 1 | grep \"$MESSAGE\"", 
+        "stdout_lines": [
+            "NAME:   confluent", 
+            "LAST DEPLOYED: Fri Apr 26 11:18:53 2019", 
+            "NAMESPACE: default", 
+            "STATUS: DEPLOYED", 
+            "", 
+            "RESOURCES:", 
+            "==> v1/Service", 
+            "NAME                             TYPE       CLUSTER-IP      EXTERNAL-IP  PORT(S)            AGE", 
+            "confluent-cp-kafka-connect       ClusterIP  10.109.82.109   <none>       8083/TCP           2s", 
+            "confluent-cp-kafka-rest          ClusterIP  10.109.220.177  <none>       8082/TCP           2s", 
+            "confluent-cp-kafka-headless      ClusterIP  None            <none>       9092/TCP           2s", 
+            "confluent-cp-kafka               ClusterIP  10.102.47.134   <none>       9092/TCP           1s", 
+            "confluent-cp-ksql-server         ClusterIP  10.108.23.9     <none>       8088/TCP           1s", 
+            "confluent-cp-schema-registry     ClusterIP  10.108.118.149  <none>       8081/TCP           1s", 
+            "confluent-cp-zookeeper-headless  ClusterIP  None            <none>       2888/TCP,3888/TCP  1s", 
+            "confluent-cp-zookeeper           ClusterIP  10.108.33.4     <none>       2181/TCP           1s", 
+            "", 
+            "==> v1beta2/Deployment", 
+            "NAME                          DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE", 
+            "confluent-cp-kafka-connect    1        1        1           0          1s", 
+            "confluent-cp-kafka-rest       1        1        1           0          1s", 
+            "confluent-cp-ksql-server      1        1        1           0          1s", 
+            "confluent-cp-schema-registry  1        1        1           0          1s", 
+            "", 
+            "==> v1beta1/StatefulSet", 
+            "NAME                    DESIRED  CURRENT  AGE", 
+            "confluent-cp-kafka      3        1        1s", 
+            "confluent-cp-zookeeper  3        1        1s", 
+            "", 
+            "==> v1/Pod(related)", 
+            "NAME                                           READY  STATUS             RESTARTS  AGE", 
+            "confluent-cp-kafka-connect-8bf74bcf7-7kz4x     0/2    ContainerCreating  0         1s", 
+            "confluent-cp-kafka-rest-55d7897c88-2976n       0/2    ContainerCreating  0         1s", 
+            "confluent-cp-ksql-server-66d8947898-jbqfh      0/2    ContainerCreating  0         1s", 
+            "confluent-cp-schema-registry-747f745bbb-kckjr  0/2    ContainerCreating  0         1s", 
+            "confluent-cp-kafka-0                           0/2    Pending            0         1s", 
+            "confluent-cp-zookeeper-0                       0/2    Pending            0         0s", 
+            "", 
+            "==> v1beta1/PodDisruptionBudget", 
+            "NAME                        MIN AVAILABLE  MAX UNAVAILABLE  ALLOWED DISRUPTIONS  AGE", 
+            "confluent-cp-zookeeper-pdb  N/A            1                0                    2s", 
+            "", 
+            "==> v1/ConfigMap", 
+            "NAME                                             DATA  AGE", 
+            "confluent-cp-kafka-connect-jmx-configmap         1     2s", 
+            "confluent-cp-kafka-rest-jmx-configmap            1     2s", 
+            "confluent-cp-kafka-jmx-configmap                 1     2s", 
+            "confluent-cp-ksql-server-jmx-configmap           1     2s", 
+            "confluent-cp-ksql-server-ksql-queries-configmap  1     2s", 
+            "confluent-cp-schema-registry-jmx-configmap       1     2s", 
+            "confluent-cp-zookeeper-jmx-configmap             1     2s", 
+            "", 
+            "", 
+            "NOTES:", 
+            "## ------------------------------------------------------", 
+            "## Zookeeper", 
+            "## ------------------------------------------------------", 
+            "Connection string for Confluent Kafka:", 
+            "  confluent-cp-zookeeper-0.confluent-cp-zookeeper-headless:2181,confluent-cp-zookeeper-1.confluent-cp-zookeeper-headless:2181,...", 
+            "", 
+            "To connect from a client pod:", 
+            "", 
+            "1. Deploy a zookeeper client pod with configuration:", 
+            "", 
+            "    apiVersion: v1", 
+            "    kind: Pod", 
+            "    metadata:", 
+            "      name: zookeeper-client", 
+            "      namespace: default", 
+            "    spec:", 
+            "      containers:", 
+            "      - name: zookeeper-client", 
+            "        image: confluentinc/cp-zookeeper:5.1.2", 
+            "        command:", 
+            "          - sh", 
+            "          - -c", 
+            "          - \"exec tail -f /dev/null\"", 
+            "", 
+            "2. Log into the Pod", 
+            "", 
+            "  kubectl exec -it zookeeper-client -- /bin/bash", 
+            "", 
+            "3. Use zookeeper-shell to connect in the zookeeper-client Pod:", 
+            "", 
+            "  zookeeper-shell confluent-cp-zookeeper:2181", 
+            "", 
+            "4. Explore with zookeeper commands, for example:", 
+            "", 
+            "  # Gives the list of active brokers", 
+            "  ls /brokers/ids", 
+            "", 
+            "  # Gives the list of topics", 
+            "  ls /brokers/topics", 
+            "", 
+            "  # Gives more detailed information of the broker id '0'", 
+            "  get /brokers/ids/0## ------------------------------------------------------", 
+            "## Kafka", 
+            "## ------------------------------------------------------", 
+            "To connect from a client pod:", 
+            "", 
+            "1. Deploy a kafka client pod with configuration:", 
+            "", 
+            "    apiVersion: v1", 
+            "    kind: Pod", 
+            "    metadata:", 
+            "      name: kafka-client", 
+            "      namespace: default", 
+            "    spec:", 
+            "      containers:", 
+            "      - name: kafka-client", 
+            "        image: confluentinc/cp-kafka:5.1.2", 
+            "        command:", 
+            "          - sh", 
+            "          - -c", 
+            "          - \"exec tail -f /dev/null\"", 
+            "", 
+            "2. Log into the Pod", 
+            "", 
+            "  kubectl exec -it kafka-client -- /bin/bash", 
+            "", 
+            "3. Explore with kafka commands:", 
+            "", 
+            "  # Create the topic", 
+            "  kafka-topics --zookeeper confluent-cp-zookeeper-headless:2181 --topic confluent-topic --create --partitions 1 --replication-factor 1 --if-not-exists", 
+            "", 
+            "  # Create a message", 
+            "  MESSAGE=\"`date -u`\"", 
+            "", 
+            "  # Produce a test message to the topic", 
+            "  echo \"$MESSAGE\" | kafka-console-producer --broker-list confluent-cp-kafka-headless:9092 --topic confluent-topic", 
+            "", 
+            "  # Consume a test message from the topic", 
+            "  kafka-console-consumer --bootstrap-server confluent-cp-kafka-headless:9092 --topic confluent-topic --from-beginning --timeout-ms 2000 --max-messages 1 | grep \"$MESSAGE\""
+        ]
+    }
+}
+2019-04-26 11:18:55,568 p=5485 u=yungshun |  TASK [Deploy a ZooKeeper client pod] *******************************************
+2019-04-26 11:18:58,525 p=5485 u=yungshun |  fatal: [master1]: FAILED! => {"changed": true, "cmd": "kubectl create -f zookeeper-client.yml", "delta": "0:00:02.532599", "end": "2019-04-26 11:18:58.459794", "msg": "non-zero return code", "rc": 1, "start": "2019-04-26 11:18:55.927195", "stderr": "Error from server (AlreadyExists): error when creating \"zookeeper-client.yml\": pods \"zookeeper-client\" already exists", "stderr_lines": ["Error from server (AlreadyExists): error when creating \"zookeeper-client.yml\": pods \"zookeeper-client\" already exists"], "stdout": "", "stdout_lines": []}
+2019-04-26 11:18:58,527 p=5485 u=yungshun |  	to retry, use: --limit @/home/yungshun/workspace/ansible/ansible-k8s-helm-confluent/confluent.retry
+
+2019-04-26 11:18:58,527 p=5485 u=yungshun |  PLAY RECAP *********************************************************************
+2019-04-26 11:18:58,527 p=5485 u=yungshun |  master1                    : ok=15   changed=5    unreachable=0    failed=1   
+2019-04-26 11:18:58,528 p=5485 u=yungshun |  worker1                    : ok=9    changed=0    unreachable=0    failed=0   
+2019-04-26 11:18:58,528 p=5485 u=yungshun |  worker2                    : ok=9    changed=0    unreachable=0    failed=0   

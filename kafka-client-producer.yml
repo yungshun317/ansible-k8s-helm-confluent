@@ -21,4 +21,20 @@ spec:
           - sh
           - -c
           - "true i=0; while true; do echo \"$(hostname --ip-address):$(date):$i\"; true $((i=i+1)); done | kafka-console-producer --broker-list confluent-cp-kafka-headless:9092 --topic confluent-topic"
-          #- "while true; do echo \"test 1\"; done | kafka-console-producer --broker-list confluent-cp-kafka-headless:9092 --topic confluent-topic"
+      - name: prometheus-jmx-exporter
+        image: solsson/kafka-prometheus-jmx-exporter
+        command:
+          - sh 
+          - -c
+          - "exec tail -f /dev/null"
+       #  - java
+       #  - -XX:+UnlockExperimentalVMOptions
+       #  - -XX:+UseCGroupMemoryLimitForHeap
+       #  - -XX:MaxRAMFraction=1
+       #  - -XshowSettings:vm
+       #  - -jar
+       #  - jmx_prometheus_httpserver.jar
+       #  - 5556
+       #  - /etc/jmx-ksql-server/jmx-ksql-server-prometheus.yml
+        ports: 
+        - containerPort: 5556

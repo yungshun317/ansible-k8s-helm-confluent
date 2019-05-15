@@ -64,6 +64,33 @@ confluent-cp-kafka-connect-config
 confluent-cp-kafka-connect-offset
 confluent-cp-kafka-connect-status
 
+## KSQL client
+
+$ docker run -it confluentinc/cp-ksql-cli http://10.108.124.40:8088
+Or
+$ kubectl exec -it ksql-client -- ksql http://10.108.124.40:8088
+
+ksql> SHOW TOPICS;
+
+ksql> create stream pageviews_original (viewtime bigint, userid varchar, pageid varchar) with (kafka_topic='pageviews', value_format='DELIMITED');
+ Message        
+----------------
+ Stream created 
+----------------
+
+ksql> SELECT pageid FROM pageviews_original LIMIT 3;
+Page_90
+Page_85
+Page_21
+Limit Reached
+Query terminated
+
+ksql> DROP STREAM pageviews_original;
+ Message        
+----------------
+ Stream created 
+----------------
+
 ## Kafka Connect
 $ kubectl get svc confluent-cp-kafka-connect
 NAME                         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
@@ -91,3 +118,40 @@ $ curl 10.99.152.226:8083/connectors/local-file-sink/status
 {"name":"local-file-sink","connector":{"state":"RUNNING","worker_id":"10.244.1.33:8083"},"tasks":[{"id":0,"state":"RUNNING","worker_id":"10.244.1.33:8083"}],"type":"sink"}
 
 $ curl -X DELETE 10.99.152.226:8083/connectors/local-file-sink
+
+## JDBC Sink
+$ vim jdbc-sink.json
+{
+  "name": "jdbc-sink",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "tasks.max": "1",
+    "topics": "pageviews",
+    "connection.url": "jdbc:postgresql://postgres-postgresql:5432/sink",
+    "connection.user": "postgres",
+    "connection.password": "1rAo45RfDM",
+    "auto.create": "true",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter"
+  }
+}
+
+$ curl -X POST -H "Content-Type: application/json" --data @jdbc-sink.json http://10.104.55.60:8083/connectors
+{"name":"jdbc-sink","config":{"connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector","tasks.max":"1","topics":"pageviews","connection.url":"jdbc:postgresql://postgres-postgresql:5432/sink","connection.user":"postgres","connection.password":"1rAo45RfDM","auto.create":"true","name":"jdbc-sink"},"tasks":[{"connector":"jdbc-sink","task":0}],"type":"sink"}
+
+$ curl 10.104.55.60:8083/connectors
+["jdbc-sink"]
+
+$ curl 10.104.55.60:8083/connectors/jdbc-sink/status
+{"name":"jdbc-sink","connector":{"state":"RUNNING","worker_id":"10.244.1.154:8083"},"tasks":[{"id":0,"state":"RUNNING","worker_id":"10.244.1.154:8083"}],"type":"sink"}
+
+## Schema Registry
+$ curl 10.111.43.228:8081/subjects
+["pageviews-value"]
+
+$ curl 10.111.43.228:8081/subjects/pageviews-value
+{"error_code":405,"message":"HTTP 405 Method Not Allowed"}ccma@k8s-master:~$ curl 10.111.43.228:8081/subjects/pageviews-value/versions
+[1]
+
+$ curl 10.111.43.228:8081/subjects/pageviews-value/versions/1
+{"subject":"pageviews-value","version":1,"id":1,"schema":"{\"type\":\"record\",\"name\":\"KsqlDataSourceSchema\",\"namespace\":\"io.confluent.ksql.avro_schemas\",\"fields\":[{\"name\":\"viewtime\",\"type\":[\"null\",\"long\"],\"default\":null},{\"name\":\"userid\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"pageid\",\"type\":[\"null\",\"string\"],\"default\":null}]}"}
+

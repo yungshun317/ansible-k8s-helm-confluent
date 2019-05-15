@@ -21,21 +21,5 @@ spec:
         command:
           - sh
           - -c
-          - "ksql-datagen quickstart=pageviews format=delimited topic=pageviews bootstrap-server=confluent-cp-kafka-headless:9092"
-      - name: prometheus-jmx-exporter
-        image: solsson/kafka-prometheus-jmx-exporter
-        command:
-          - sh 
-          - -c
-          - "exec tail -f /dev/null"
-      #  - java
-      #  - -XX:+UnlockExperimentalVMOptions
-      #  - -XX:+UseCGroupMemoryLimitForHeap
-      #  - -XX:MaxRAMFraction=1
-      #  - -XshowSettings:vm
-      #  - -jar
-      #  - jmx_prometheus_httpserver.jar
-      #  - 5556
-      #  - /etc/jmx-ksql-server/jmx-ksql-server-prometheus.yml
-        ports: 
-        - containerPort: 5556
+          - "ksql-datagen quickstart=pageviews format=avro topic=pageviews schemaRegistryUrl=http://confluent-cp-schema-registry:8081 bootstrap-server=confluent-cp-kafka-headless:9092"
+          #- "ksql-datagen quickstart=pageviews format=delimited topic=pageviews bootstrap-server=confluent-cp-kafka-headless:9092"

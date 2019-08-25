@@ -91,7 +91,7 @@ root@kafka-client:/# kafka-console-producer --broker-list confluent-cp-kafka-hea
 
 Consume the messages and then delete the topic.
 ```sh
-$ kubectl exec -it kafka-client -- /bin/bash
+~$ kubectl exec -it kafka-client -- /bin/bash
 
 root@kafka-client:/# kafka-console-consumer --bootstrap-server confluent-cp-kafka-headless:9092 --topic confluent-topic --from-beginning
 Wed Mar 27 01:56:47 UTC 2019
